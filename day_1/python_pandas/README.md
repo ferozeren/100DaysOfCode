@@ -6,6 +6,6 @@ Using `pandas`, `seaborn`, `mathplotlib` we are trying to get meaningful insight
 
 It uses UV Python Manger to install and run `main.py` script.
 
-The output chart is stored as `i_readiness_analysis.png` then displayed after computing.
+The output chart is stored as `ai_readiness_analysis.png` then displayed after computing.
 
 
