@@ -1,0 +1,23 @@
+# https://just.systems
+
+
+set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
+
+set shell := ["sh", "-c"]
+
+default: run
+
+clean:
+    cargo clean
+    rm -r .venv
+
+build:
+    uv run maturin develop
+    uv sync
+
+run:
+    uv run main.py
+    
+
+all: clean build run
+
