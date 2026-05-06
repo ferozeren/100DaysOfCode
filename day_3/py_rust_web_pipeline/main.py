@@ -2,8 +2,7 @@ from py_rust_web_pipeline import sum_as_string
 
 
 def main() -> None:
-    print(sum_as_string(10, 11))
-    pass
+    print(sum_as_string(11, 11))
 
 
 if __name__ == "__main__":

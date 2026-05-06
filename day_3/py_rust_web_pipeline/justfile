@@ -1,23 +1,35 @@
 # https://just.systems
 
-
 set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
-
-set shell := ["sh", "-c"]
+set shell := ["sh", "-c"]    
 
 default: run
 
+[linux]
+[macos]
 clean:
+    @echo "Cleaning Cargo & UV cache, removing .venv environment.."
     cargo clean
-    rm -r .venv
+    uv cache clean 
+    rm -rf .venv 
+
+[windows]
+clean:
+    @echo "Cleaning Cargo & UV cache, removing .venv environment.."
+    cargo clean
+    uv cache clean 
+    if (Test-Path .venv) { Remove-Item -Recurse -Force .venv }
 
 build:
-    uv run maturin develop
-    uv sync
+    @echo "Syncing UV enviroment, building rust extenstion with Maturin and PyO3"
+    uv sync 
+    uv run maturin develop 
 
-run:
+run: 
     uv run main.py
-    
+
+watch:
+    @echo "Watching for .rs & .py files updates to execute just run.."
+    watchexec --exts rs,py --restart -- just run
 
 all: clean build run
-
