@@ -8,21 +8,39 @@ default: run
 [linux]
 [macos]
 clean:
-    @echo "Cleaning Cargo & UV cache, removing .venv environment.."
-    cargo clean
-    uv cache clean 
+    @echo "Uninstalling py_rust_web_pipeline [release package], cleaning uv global Cache.."
+    uv pip uninstall py_rust_web_pipeline
+    uv cache clean
+
+[linux]
+[macos]
+deepclean:
+    @echo "Removing .venv environment, Cleaning UV & Cargo cache[target]..."
     rm -rf .venv 
+    uv cache clean
+    cargo clean
 
 [windows]
 clean:
-    @echo "Cleaning Cargo & UV cache, removing .venv environment.."
-    cargo clean
-    uv cache clean 
+    @echo "Uninstalling py_rust_web_pipeline package, cleaning uv global Cache and cargo cache.."
+    uv pip uninstall py_rust_web_pipeline
+    uv cache clean
+
+[windows]
+deepclean:
+    @echo "Removing .venv environment, Cleaning UV & Cargo global cache..."
     if (Test-Path .venv) { Remove-Item -Recurse -Force .venv }
+    uv cache clean
+    cargo clean
+
+
+sync:
+    @echo "Syncing UV enviroment and updating cargo dependencies tree.."
+    uv sync -v
+    cargo update
 
 build:
-    @echo "Syncing UV enviroment, building rust extenstion with Maturin and PyO3"
-    uv sync 
+    @echo "Building rust extenstion with Maturin and PyO3"
     uv run maturin develop 
 
 run: 
@@ -31,5 +49,3 @@ run:
 watch:
     @echo "Watching for .rs & .py files updates to execute just run.."
     watchexec --exts rs,py --restart -- just run
-
-all: clean build run

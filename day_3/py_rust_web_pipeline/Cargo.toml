@@ -9,4 +9,7 @@ name = "py_rust_web_pipeline"
 crate-type = ["cdylib"]
 
 [dependencies]
-pyo3 = "0.28.2"
+polars = { version = "0.53.0", features = ["lazy", "csv"] }
+# pyo3 = "0.28.2"
+pyo3 = { version = "0.27.0", features = ["extension-module"] }
+pyo3-polars = "0.26.0"

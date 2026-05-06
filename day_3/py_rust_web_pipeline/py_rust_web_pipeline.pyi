@@ -1,4 +1,4 @@
-def sum_as_string(a: int, b: int) -> str:
-    """Takes two integers and returns their sum as a string."""
+def get_csv(csv_path: str) -> None:
+    """Get CSV from rust side"""
     ...
-    return str(a + b)
+    pass
