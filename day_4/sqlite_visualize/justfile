@@ -1,0 +1,54 @@
+# https://just.systems
+
+set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
+set shell := ["sh", "-c"]    
+
+default: run
+
+[linux]
+[macos]
+clean:
+    @echo "Uninstalling sqlite_visualize [release package], cleaning uv global Cache.."
+    uv pip uninstall sqlite_visualize
+    uv cache clean
+
+[linux]
+[macos]
+deepclean:
+    @echo "Removing .venv environment, Cleaning UV & Cargo cache[target]..."
+    rm -rf .venv 
+    uv cache clean
+    cargo clean
+
+[windows]
+clean:
+    @echo "Uninstalling sqlite_visualize package, cleaning uv global Cache and cargo cache.."
+    uv pip uninstall sqlite_visualize
+    uv cache clean
+
+[windows]
+deepclean:
+    @echo "Removing .venv environment, Cleaning UV & Cargo global cache..."
+    if (Test-Path .venv) { Remove-Item -Recurse -Force .venv }
+    uv cache clean
+    cargo clean
+
+
+sync:clean
+    @echo "Syncing UV enviroment and updating cargo dependencies tree.."
+    uv sync -v
+    cargo update
+
+build:
+    @echo "Building rust extenstion with Maturin and PyO3"
+    uv run maturin develop 
+
+run: 
+    uv run main.py
+
+watch:
+    @echo "Watching for .rs & .py files updates to execute just run.."
+    watchexec --exts rs,py --restart -- just run
+
+serve:
+    uv run streamlit run main.py
