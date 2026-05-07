@@ -52,3 +52,5 @@ watch:
 
 serve:
     uv run streamlit run main.py
+
+all: sync build serve
