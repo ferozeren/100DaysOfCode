@@ -4,13 +4,14 @@
 // the signatures for now.
 
 fn is_even(num: i64) -> bool {
-    num % 2 == 0
+    num % 2 == 0 // Same as return num %2 == 0;
 }
 
-// TODO: Fix the function signature.
-fn sale_price(price: i64) -> {
+fn sale_price(price: i64) -> i64 {
+    // We need to have a return type in the fucntion signature, if we are
+    // returning anything from the fucntion
     if is_even(price) {
-        price - 10
+        price - 10 // Samw as return price -10;
     } else {
         price - 3
     }

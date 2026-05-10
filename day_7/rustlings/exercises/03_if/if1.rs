@@ -1,13 +1,26 @@
 fn bigger(a: i32, b: i32) -> i32 {
-    // TODO: Complete this function to return the bigger number!
-    // If both numbers are equal, any of them can be returned.
-    // Do not use:
-    // - another function call
-    // - additional variables
+    if a > b {
+        // If this condition is true, proceed with if block
+        // else go to else block
+        a
+    } else {
+        // Lese block will be execute if the if condition is false
+        b
+    }
 }
 
 fn main() {
     // You can optionally experiment here.
+
+    let my_name: &str = "ferozeren";
+
+    if !my_name.is_empty() {
+        // Same as if !(my_name.len() > 0)  {}
+        // '!` will make statment opposite, true -> false, false -> true.`
+        println!("Hello, {}", my_name); // Same as println!("Hello, {my_name}");
+    } else {
+        println!("Empty name is provided!")
+    }
 }
 
 // Don't mind this for now :)

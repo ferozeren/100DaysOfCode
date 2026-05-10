@@ -1,18 +1,21 @@
 fn animal_habitat(animal: &str) -> &str {
-    // TODO: Fix the compiler error in the statement below.
+    // All return type must be same for identifier variable
     let identifier = if animal == "crab" {
         1
     } else if animal == "gopher" {
-        2.0
+        2
     } else if animal == "snake" {
         3
     } else {
-        "Unknown"
+        u8::MAX // 4_i32, 4_u8, i32::MAX, etc are fine too, rust will infer it
+                // as long as it's valid
     };
 
-    // Don't change the expression below!
+    // Here, based on the identifier variable we are returning &str to the function caller
+    // remember we aren't using return since, its at the end of the fucntion, rust will
+    // take last expression value  as return value
     if identifier == 1 {
-        "Beach"
+        "Beach" // Same as return "Beach";
     } else if identifier == 2 {
         "Burrow"
     } else if identifier == 3 {
@@ -23,7 +26,32 @@ fn animal_habitat(animal: &str) -> &str {
 }
 
 fn main() {
-    // You can optionally experiment here.
+    let student_average: f32 = 34.00;
+    let user_grade: &str = {
+        if student_average >= 95.0 {
+            "S"
+        } else if student_average >= 85.0 {
+            "A"
+        } else if student_average >= 70.0 {
+            "B"
+        } else if student_average >= 60.0 {
+            "D"
+        } else if student_average >= 50.0 {
+            "E"
+        } else if student_average >= 35.0 {
+            "Passed"
+        } else {
+            "Failed"
+        }
+    };
+
+    if ["S", "A", "B"].contains(&user_grade) {
+        println!("Passed with Distinction");
+    } else if ["C", "D", "E", "Passed"].contains(&user_grade) {
+        println!("You did well, You Passed!");
+    } else {
+        println!("You didn't do well, You Failed!");
+    }
 }
 
 // Don't change the tests!

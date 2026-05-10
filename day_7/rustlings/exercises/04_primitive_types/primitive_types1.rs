@@ -2,14 +2,21 @@
 
 fn main() {
     let is_morning = true;
+
     if is_morning {
         println!("Good morning!");
     }
 
-    // TODO: Define a boolean variable with the name `is_evening` before the `if` statement below.
-    // The value of the variable should be the negation (opposite) of `is_morning`.
-    // let …
+    let is_evening = !is_morning; // If morning is true, it will be false else true
     if is_evening {
         println!("Good evening!");
+    }
+
+    let first = true;
+    let second = false;
+
+    if first != second {
+        // Same as if !(first == second) {}
+        println!("Ola");
     }
 }
