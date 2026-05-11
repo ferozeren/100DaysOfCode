@@ -1,6 +1,11 @@
 fn main() {
-    // TODO: Create an array called `a` with at least 100 elements in it.
-    // let a = ???
+    let _ = [0_i32; 100]; // Best
+                          // Or
+    let _: [i32; 100] = [0; 100]; //  Use when the size/type is critical for safety.
+                                  // Or
+    let _: [i32; _] = [0; 100]; // Ok if you dont' care about size of array, again wihtout annotaion would be better
+                                // Or
+    let a: [_; _] = [0_i32; 100]; // Better use without annotation
 
     if a.len() >= 100 {
         println!("Wow, that's a big array!");
