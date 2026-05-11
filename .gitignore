@@ -3,6 +3,9 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+day_8/discord_py_bot/.env
+day_8/discord_py_bot/discord.log
+
 # C extensions
 *.so
 
