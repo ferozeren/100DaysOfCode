@@ -1,0 +1,13 @@
+default: run
+
+source_dir := "src"
+output_dir := "out"
+
+build:
+    @javac {{ source_dir }}/Main.java -d {{output_dir}}
+
+run:build
+    @java -cp {{output_dir}} Main
+
+watch:
+    watchexec -e java,justfile just
