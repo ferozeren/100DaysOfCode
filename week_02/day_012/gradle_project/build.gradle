@@ -1,0 +1,4 @@
+tasks.register('CopyMd', Copy) {
+    from 'test.md'
+    into "$buildDir"
+}
